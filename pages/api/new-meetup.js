@@ -1,9 +1,9 @@
-require("dotenv").config();
 import { MongoClient } from "mongodb";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
+
     const client = await MongoClient.connect(
       `${process.env.REACT_APP_API_USER}`
     );
