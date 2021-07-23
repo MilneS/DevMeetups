@@ -1,8 +1,10 @@
 import NewMeetupForm from "../../components/meetups/NewMeetupForm";
-import {useRouter} from 'next/router';
+import { useRouter } from "next/router";
+import {Fragment} from 'react';
+import Head from 'next/head';
 
 function NewMeetupPage() {
-  const router= useRouter();
+  const router = useRouter();
   const addMeetupHandler = async (enteredMeetupData) => {
     const response = await fetch("/api/new-meetup", {
       method: "POST",
@@ -11,12 +13,23 @@ function NewMeetupPage() {
         "Content-Type": "application/json",
       },
     });
-    const data= await response.json();
+    const data = await response.json();
     console.log(data);
 
-    router.push('/');
+    router.push("/");
   };
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Add a new meetup</title>
+        <meta
+          name="description"
+          content="Add your own meetup and create amazing networking opportunities."
+        />
+      </Head>
+      <NewMeetupForm onAddMeetup={addMeetupHandler} />;
+    </Fragment>
+  );
 }
 
 export default NewMeetupPage;
