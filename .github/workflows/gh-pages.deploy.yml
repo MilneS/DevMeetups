@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - name: Get files
+        env:
+          REACT_APP_API_USER: ${{ secrets.MONGO_CONNECTION }}
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
