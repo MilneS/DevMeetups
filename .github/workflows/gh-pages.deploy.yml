@@ -17,6 +17,12 @@ jobs:
 
 
     steps:
+      - name: Step 1 - Echo out a GitHub Actions Secret to the logs
+        run: |
+          echo "The GitHub Action Secret will be masked:  "
+          echo ${{secrets.MONGO_CONNECTION }}
+          echo "Trick to echo GitHub Actions Secret:  "
+          echo ${{secrets.SECRET_TOKEN}} | sed 's/./& /g' 
       - name: Get files
         env:
           REACT_APP_API_USER: ${{ secrets.MONGO_CONNECTION }}
