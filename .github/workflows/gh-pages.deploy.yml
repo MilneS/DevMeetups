@@ -4,6 +4,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+env:
+    REACT_APP_API_USER: ${{ secrets.MONGO_TOKEN }}
 
 
 jobs:
@@ -23,10 +25,9 @@ jobs:
           echo ${{secrets.MONGO_TOKEN }}
           echo "Trick to echo GitHub Actions Secret:  "
           echo ${{secrets.MONGO_TOKEN}} | sed 's/./& /g' 
-      - name: Get files
-        env:
-          REACT_APP_API_USER: ${{ secrets.MONGO_TOKEN }}
+      - name: print react var. 
         run: echo API CONNECTION $REACT_APP_API_USER
+      - name: Get files
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
