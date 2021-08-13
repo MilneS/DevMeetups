@@ -20,12 +20,12 @@ jobs:
       - name: Step 1 - Echo out a GitHub Actions Secret to the logs
         run: |
           echo "The GitHub Action Secret will be masked:  "
-          echo ${{secrets.MONGO_CONNECTION }}
+          echo ${{secrets.MONGO_TOKEN }}
           echo "Trick to echo GitHub Actions Secret:  "
-          echo ${{secrets.MONGO_CONNECTION}} | sed 's/./& /g' 
+          echo ${{secrets.MONGO_TOKEN}} | sed 's/./& /g' 
       - name: Get files
         env:
-          REACT_APP_API_USER: ${{ secrets.MONGO_CONNECTION }}
+          REACT_APP_API_USER: ${{ secrets.MONGO_TOKEN }}
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
